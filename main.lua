@@ -1,14 +1,17 @@
 -- luacheck: ignore require
 -- luacheck: ignore self
-local render_hand
+-- !major changes to loading here, having only the scene handler load
+-- and having each scene load whatever it needs is a much better idea, all we need is to load
+-- the modules necessary per scene, this may also save performance a little bit depending on the
+-- amount of modules, although, of course, at the expense of loading times being a little bit bigger.
+-- TODO #1 make sure the current scenehandler is enough to work for scene loading. maybe self delete the instance running then have each scene declare its own scenehandler
+
 local scene_hand
-local ui_sys
+
 
 function love.load()
     --load renderHandler class
-    render_hand = require("modules/RenderingHandler")
     --load uiSystem class
-    ui_sys = require("modules/uiSysDir/UiSystem")
     --load scenehandler class
     scene_hand = require("modules/SceneHandler")
     --load assets
